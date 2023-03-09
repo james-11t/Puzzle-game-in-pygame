@@ -5,8 +5,10 @@ import time
 from sys import exit
 pygame.init()
 pygame.display.set_caption("Powers")
-global userscore
+firstconvert = False
 timeout = False
+oneturn = False
+dragging = False
 convert = False
 count = 0
 clicked = ''
@@ -15,7 +17,8 @@ clock = pygame.time.Clock()
 screen.fill('#131414')
 text = pygame.font.Font('C:/Users/Family/Documents/ClearSans-Medium.ttf',35)
 coefficients = [1,2,4,25,49,64]
-powers = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+powers = [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]
+brackets = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 powerxpos = [219, 314, 404, 494, 219, 314, 404, 494, 219, 314, 404, 494, 219, 314, 404, 494 ]
 powerypos = [150, 150, 150, 150, 240, 240, 240, 240, 330, 330, 330, 330, 420, 420, 420, 420 ]
 powertext = pygame.font.Font('C:/Users/Family/Documents/ClearSans-Medium.ttf',15)
@@ -60,7 +63,10 @@ def draw(thecount):
 
             else:
                 if powers[current] != 1:
-                    thetexts = text.render('(' + (str((currentcoefficients[current] )) + 'x)'),True,'white')
+                    if brackets[current] == 0:
+                        thetexts = text.render((str((currentcoefficients[current] )) + 'x'),True,'white')
+                    else:
+                        thetexts = text.render('(' + (str((currentcoefficients[current] )) + 'x)'),True,'white')
                 else:
                     thetexts = text.render((str((currentcoefficients[current] )) + 'x'),True,'white')
             powerblit = powertext.render((str(powers[current])),True,'white')
@@ -102,6 +108,7 @@ def draw(thecount):
                         currentcoefficients[tempstore] = int(math.sqrt(currentcoefficients[tempstore]))
                         thepower = int(math.log(temp,currentcoefficients[tempstore]))
                         powers[tempstore] = thepower
+                        brackets[current] = 1
                 
                 
                     
@@ -156,7 +163,7 @@ while True:
         while i != 15 or inserted != True:
             if currentcoefficients[i] == 0:
                 currentcoefficients[i] = random.choice(coefficients)
-                powers[i] = 1
+                powers[i] = 2
                 inserted = True
                 draw(count)
             else:
