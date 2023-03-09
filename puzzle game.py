@@ -7,8 +7,6 @@ pygame.init()
 pygame.display.set_caption("Powers")
 global userscore
 timeout = False
-oneturn = False
-dragging = False
 convert = False
 count = 0
 clicked = ''
@@ -49,6 +47,10 @@ def draw(thecount):
         for j in range (column):
             if currentcoefficients[current] == 0:
                 thecount += 1
+                if thecount > 15:
+                    thecount = 15
+                if thecount < 0:
+                    thecount = 0
             if currentcoefficients[current] == 1:
                 if powers[current] != 1:
                     thetexts = text.render(('(x)'),True,'white')
@@ -206,7 +208,7 @@ while True:
         if keys[pygame.K_SPACE]:
             convert = True
             time.sleep(0.5)
-            draw(count)
+            draw(count) 
         else:
             convert = False
     pygame.display.update()
