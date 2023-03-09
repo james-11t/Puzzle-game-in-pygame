@@ -1,4 +1,5 @@
- #Powers - A puzzle game
+ # Powers - A puzzle game
+ 
 All the things relevant to the puzzle game: code and also files that need to be downloaded for it to be accessible
 
 The aim of the game is to get rid of the tiles by using the arrow keys to switch between tiles, and clicking to eliminate tiles with the same base number.
